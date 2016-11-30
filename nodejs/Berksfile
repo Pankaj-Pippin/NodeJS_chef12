@@ -7,3 +7,5 @@ group :integration do
   cookbook 'apt'
   cookbook 'nodejs_test', path: './test/cookbooks/nodejs_test'
 end
+
+cookbook 'nodejs', git: 'git://github.com/redguide/nodejs.git'
