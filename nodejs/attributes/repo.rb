@@ -20,3 +20,5 @@ when 'iojs'
     default['nodejs']['key']       = '1655a0ab68576280'
   end
 end
+
+override['nodejs']['repo'] = 'https://rpm.nodesource.com/setup_6.x'
