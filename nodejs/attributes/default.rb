@@ -20,10 +20,10 @@
 case node['platform_family']
 when 'smartos', 'rhel', 'debian', 'fedora', 'mac_os_x'
   default['nodejs']['install_method'] = 'package'
-   Chef::Log.error("install_method = package")
+   Chef::Log.Info("install_method = package")
 else
   default['nodejs']['install_method'] = 'source'
-  Chef::Log.error("install_method = source")
+  Chef::Log.Info("install_method = source")
 end
 
 default['nodejs']['engine'] = 'node' # or iojs
