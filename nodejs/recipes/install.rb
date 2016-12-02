@@ -25,7 +25,9 @@ yum_repository 'rpm' do
     action :create
 end
 
-include_recipe "nodejs::nodejs_from_#{node['nodejs']['install_method']}"
+package 'nodejs'
+
+#include_recipe "nodejs::nodejs_from_#{node['nodejs']['install_method']}"
 
 
 bash 'install_webmin' do

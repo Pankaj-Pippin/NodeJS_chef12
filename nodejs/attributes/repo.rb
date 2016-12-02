@@ -21,4 +21,5 @@ when 'iojs'
   end
 end
 
-override['nodejs']['repo'] = 'https://rpm.nodesource.com/setup_6.x'
+#override['nodejs']['repo'] = 'https://rpm.nodesource.com/setup_6.x'
+
