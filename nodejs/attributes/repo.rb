@@ -21,4 +21,11 @@ when 'iojs'
   end
 end
 
-override['nodejs']['repo'] = 'https://rpm.nodesource.com/setup_6.x'
+yum_repository 'rpm' do
+    description 'RPM repo for NodeJS'
+    baseurl 'https://rpm.nodesource.com/pub_6.x/el/6/x86_64/'
+    gpgkey 'https://rpm.nodesource.com/pub/el/NODESOURCE-GPG-SIGNING-KEY-EL'
+    action :create
+end
+
+#override['nodejs']['repo'] = 'https://rpm.nodesource.com/setup_6.x'
