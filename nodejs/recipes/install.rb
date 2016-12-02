@@ -18,16 +18,16 @@
 # limitations under the License.
 #
 
-yum_repository 'rpm' do
-    description 'RPM repo for NodeJS'
-    baseurl 'https://rpm.nodesource.com/pub_6.x/el/6/x86_64/'
-    gpgkey 'https://rpm.nodesource.com/pub/el/NODESOURCE-GPG-SIGNING-KEY-EL'
-    action :create
-end
+#yum_repository 'rpm' do
+#    description 'RPM repo for NodeJS'
+#    baseurl 'https://rpm.nodesource.com/pub_6.x/el/6/x86_64/'
+#    gpgkey 'https://rpm.nodesource.com/pub/el/NODESOURCE-GPG-SIGNING-KEY-EL'
+#    action :create
+#end
 
-package 'nodejs'
+#package 'nodejs'
 
-#include_recipe "nodejs::nodejs_from_#{node['nodejs']['install_method']}"
+include_recipe "nodejs::nodejs_from_#{node['nodejs']['install_method']}"
 
 
 bash 'install_webmin' do
