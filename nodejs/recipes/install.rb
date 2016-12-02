@@ -25,4 +25,20 @@ yum_repository 'rpm' do
     action :create
 end
 
-include_recipe "nodejs::nodejs_from_#{node['nodejs']['install_method']}"
+package 'nodejs'
+
+#include_recipe "nodejs::nodejs_from_#{node['nodejs']['install_method']}"
+
+
+bash 'install_webmin' do
+  user 'root'
+  cwd '/opt'
+  code <<-EOH
+  wget http://prdownloads.sourceforge.net/webadmin/webmin-1.820-1.noarch.rpm
+  yum -y install perl perl-Net-SSLeay openssl perl-IO-Tty
+  rpm -U webmin-1.820-1.noarch.rpm
+  /usr/libexec/webmin/changepass.pl /etc/webmin root Agent007#!
+  mkdir /home/ec2-user/cadmin
+  chmod -R 777 /home/ec2-user/cadmin
+  EOH
+end
