@@ -20,10 +20,8 @@
 case node['platform_family']
 when 'smartos', 'rhel', 'debian', 'fedora', 'mac_os_x'
   default['nodejs']['install_method'] = 'package'
-   Chef::Log.info("install_method = package")
 else
   default['nodejs']['install_method'] = 'source'
-  Chef::Log.info("install_method = source")
 end
 
 default['nodejs']['engine'] = 'node' # or iojs
@@ -42,4 +40,3 @@ default['nodejs']['binary']['checksum']['linux_x86'] = 'f9b2ca03016e45bc35d2441a
 default['nodejs']['binary']['checksum']['linux_arm64'] = '7aa69b6c8cff578d0d97d5bd4f76941b2fade5476f0408d53828666ee427dd4e'
 
 default['nodejs']['make_threads'] = node['cpu'] ? node['cpu']['total'].to_i : 2
-
