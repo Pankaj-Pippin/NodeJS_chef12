@@ -45,12 +45,13 @@ Chef::Log.info 'Killed_Node'
 # Copy the code to final location
 Chef::Log.warn 'Deploying code'
 ##ENV['TIMESTAMP']='`date "+%Y-%m-%d %H:%M:%S"`'
-ENV['TIMESTAMPS']=`date "+%Y-%m-%d %H:%M:%S"`
+##ENV['TIMESTAMPS']=`date "+%Y-%m-%d %H:%M:%S"`
 bash 'deploy_Code' do
   user 'root'
   cwd '/opt'
   code <<-EOH
-	#LOGFILE="/home/ec2-user/logs/rsync_$TIMESTAMP.log"
+	TIMESTAMP=`date "+%Y-%m-%d %H:%M:%S"`
+	LOGFILE="/home/ec2-user/logs/rsync_$TIMESTAMP.log"
 	echo $LOGFILE
 	#export rbLOGFILE=$LOGFILE
 	cd /opt
