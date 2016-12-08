@@ -5,6 +5,13 @@ bash 'download_git' do
   cwd '/opt'
   code <<-EOH
 	sudo git clone  git@github.com:pippintech/concreetadmin-server.git
+	dir ="/home/ec2-user/logs"
+	if [[ ! -e $dir ]]; then
+    mkdir $dir
+	sudo chmod -R 755 $dir
+	elif [[ ! -d $dir ]]; then
+		echo "$dir already exists but is not a directory" 1>&2
+	fi
   EOH
 end
 
@@ -38,7 +45,9 @@ bash 'deploy_Code' do
   cwd '/opt'
   code <<-EOH
   	#mv /opt/concreetadmin-server/*.* /home/ec2-user/cadmin/
-	 rsync -avzh --remove-source-files /opt/concreetadmin-server/ /home/ec2-user/cadmin/
+	TIMESTAMP=`date "+%Y-%m-%d %H:%M:%S"`
+	LOGFILE="/home/ec2-user/logs/rsync_$TIMESTAMP.log"
+	sudo rsync -avzh --remove-source-files /opt/concreetadmin-server/ /home/ec2-user/cadmin/ > $LOGFILE
 	cd /home/ec2-user/cadmin/
 	sudo rm -fr /opt/concreetadmin-server/
   EOH
