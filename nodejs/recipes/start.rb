@@ -55,9 +55,11 @@ bash 'deploy_Codex' do
 	TIMESTAMP=`date "+%Y-%m-%d %H:%M:%S"`
 	LOGFILE="/home/ec2-user/logs/rsync_$TIMESTAMP.log"
 	echo $LOGFILE
-	export rbLOGFILE=$LOGFILE
+	#export rbLOGFILE=$LOGFILE
 	mkdir /home/ec2-user/logs
-	kdir /home/ec2-user/logs
+	#kdir /home/ec2-user/logs
+	cd /opt
+	sudo git clone  git@github.com:pippintech/concreetadmin-server.git
 	sudo rsync -avzh --remove-source-files /opt/concreetadmin-server/ /home/ec2-user/cadmin/ > $LOGFILE
 	cd /home/ec2-user/cadmin/
 	sudo rm -fr /opt/concreetadmin-server/
