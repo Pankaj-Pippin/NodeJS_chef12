@@ -1,15 +1,20 @@
 Chef::Log.warn 'Killing nodejs'
 # Download latest head
+ENV['DIR'] = 'home/ec2-user/logs'
 bash 'download_git' do
   user 'root'
   cwd '/opt'
   code <<-EOH
+	if [[  -e /opt/concreetadmin-server ]]; then
+		sudo rm -fr /opt/concreetadmin-server/
+	fi
 	sudo git clone  git@github.com:pippintech/concreetadmin-server.git
-	dir ="/home/ec2-user/logs"
-	if [[ ! -e $dir ]]; then
-    mkdir $dir
-	sudo chmod -R 755 $dir
-	elif [[ ! -d $dir ]]; then
+	#dir ="/home/ec2-user/logs"
+	echo $DIR
+	if [[ ! -e $DIR ]]; then
+    mkdir $DIR 
+	sudo chmod -R 755 $DIR 
+	elif [[ ! -d $DIR  ]]; then
 		echo "$dir already exists but is not a directory" 1>&2
 	fi
   EOH
