@@ -50,12 +50,11 @@ bash 'deploy_Code' do
   cwd '/opt'
   code <<-EOH
   	#mv /opt/concreetadmin-server/*.* /home/ec2-user/cadmin/
-	TIMESTAMP=`date "+%Y-%m-%d_%H_%M_%S"`
+	TIMESTAMP=`date_"+%Y-%m-%d_%H.%M.%S"`
 	LOGFILE="/home/ec2-user/logs/rsync_$TIMESTAMP.log"
 	echo $LOGFILE
 	#export rbLOGFILE=$LOGFILE
-	mkdir /home/ec2-user/logs
-	#kdir /home/ec2-user/logs
+
 	cd /opt
 	
 	sudo git clone  git@github.com:pippintech/concreetadmin-server.git
