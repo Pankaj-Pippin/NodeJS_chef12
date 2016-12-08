@@ -50,7 +50,7 @@ bash 'deploy_Code' do
   cwd '/opt'
   code <<-EOH
   	#mv /opt/concreetadmin-server/*.* /home/ec2-user/cadmin/
-	TIMESTAMP=`date_"+%Y-%m-%d_%H.%M.%S"`
+	TIMESTAMP=`date "+%Y-%m-%d %H:%M:%S"`
 	LOGFILE="/home/ec2-user/logs/rsync_$TIMESTAMP.log"
 	echo $LOGFILE
 	#export rbLOGFILE=$LOGFILE
@@ -60,9 +60,9 @@ bash 'deploy_Code' do
 	sudo git clone  git@github.com:pippintech/concreetadmin-server.git
 	sudo git clone  git@github.com:pippintech/concreetadmin-server.git
 	sudo rsync -avzh --remove-source-files /opt/concreetadmin-server/ /home/ec2-user/cadmin/ > $LOGFILE
-	if [[  -e /opt/concreetadmin-server ]]; then
+	#if [[  -e /opt/concreetadmin-server ]]; then
 		#sudo rm -fr /opt/concreetadmin-server
-	fi
+	#fi
 	cd /home/ec2-user/cadmin/
 	sudo rm -fr /opt/concreetadmin-server
   EOH
