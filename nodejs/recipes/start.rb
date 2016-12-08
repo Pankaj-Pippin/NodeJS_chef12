@@ -44,27 +44,20 @@ Chef::Log.info 'Killed_Node'
 
 # Copy the code to final location
 Chef::Log.warn 'Deploying code'
-ENV['TIMESTAMP']='`date "+%Y-%m-%d %H:%M:%S"`'
+##ENV['TIMESTAMP']='`date "+%Y-%m-%d %H:%M:%S"`'
 ENV['TIMESTAMPS']=`date "+%Y-%m-%d %H:%M:%S"`
 bash 'deploy_Code' do
   user 'root'
   cwd '/opt'
   code <<-EOH
-  	#mv /opt/concreetadmin-server/*.* /home/ec2-user/cadmin/
-	LOGFILE="/home/ec2-user/logs/rsync_$TIMESTAMP.log"
+	#LOGFILE="/home/ec2-user/logs/rsync_$TIMESTAMP.log"
 	echo $LOGFILE
 	#export rbLOGFILE=$LOGFILE
-
 	cd /opt
-	
-	#sudo git clone  git@github.com:pippintech/concreetadmin-server.git
-	#sudo git clone  git@github.com:pippintech/concreetadmin-server.git
-	sudo rsync -avzh --remove-source-files /opt/concreetadmin-server/ /home/ec2-user/cadmin/ > $LOGFILE
-	if [[  -e /opt/concreetadmin-server ]]; then
+	sudo rsync -avzh --remove-source-files /opt/concreetadmin-server/ /home/ec2-user/cadmin/ > /home/ec2-user/logs/rsync.log
+	#if [[  -e /opt/concreetadmin-server ]]; then
 		#sudo rm -fr /opt/concreetadmin-server
-	fi
-	cd /home/ec2-user/cadmin/
-	sudo rm -fr /opt/concreetadmin-server
+	#fi
   EOH
 end
 
