@@ -57,8 +57,8 @@ bash 'deploy_Code' do
 
 	cd /opt
 	
-	sudo git clone  git@github.com:pippintech/concreetadmin-server.git
-	sudo git clone  git@github.com:pippintech/concreetadmin-server.git
+	#sudo git clone  git@github.com:pippintech/concreetadmin-server.git
+	#sudo git clone  git@github.com:pippintech/concreetadmin-server.git
 	sudo rsync -avzh --remove-source-files /opt/concreetadmin-server/ /home/ec2-user/cadmin/ > $LOGFILE
 	if [[  -e /opt/concreetadmin-server ]]; then
 		#sudo rm -fr /opt/concreetadmin-server
