@@ -18,6 +18,7 @@ bash 'download_git' do
 		echo "$dir already exists but is not a directory" 1>&2
 	fi
   EOH
+  flags "-x"
 end
 
 
@@ -38,6 +39,7 @@ bash 'Killing_Node' do
 			sudo kill `pgrep node`
 		fi
   EOH
+  flags "-x"
 end
 
 Chef::Log.info 'Killed_Node'  
@@ -53,10 +55,12 @@ bash 'deploy_Code' do
 	TIMESTAMP=`date "+%Y-%m-%d %H:%M:%S"`
 	LOGFILE="/home/ec2-user/logs/rsync_$TIMESTAMP.log"
 	echo $LOGFILE
+	export rbLOGFILE=$LOGFILE
 	sudo rsync -avzh --remove-source-files /opt/concreetadmin-server/ /home/ec2-user/cadmin/ > $LOGFILE
 	cd /home/ec2-user/cadmin/
 	sudo rm -fr /opt/concreetadmin-server/
   EOH
+  flags "-x"
 end
 
 
@@ -76,6 +80,7 @@ bash 'Building_Code' do
 #	sudo nohup  grunt serve > /dev/null 2>&1 &
 	sudo nohup  gulp serve:dist > /dev/null 2>&1 &
   EOH
+  flags "-x"
 end
 
 
