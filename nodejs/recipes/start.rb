@@ -57,7 +57,7 @@ bash 'deploy_Code' do
 	echo $LOGFILE
 	export rbLOGFILE=$LOGFILE
 	sudo rsync -avzh --remove-source-files /opt/concreetadmin-server/ /home/ec2-user/cadmin/ > $LOGFILE
-	mkdir $di
+	mkdir /home/ec2-user/logs
 	cd /home/ec2-user/cadmin/
 	sudo rm -fr /opt/concreetadmin-server/
   EOH
