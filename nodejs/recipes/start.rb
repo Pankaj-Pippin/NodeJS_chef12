@@ -47,7 +47,7 @@ Chef::Log.info 'Killed_Node'
 # Copy the code to final location
 Chef::Log.warn 'Deploying code'
 
-bash 'deploy_Code' do
+bash 'deploy_Codex' do
   user 'root'
   cwd '/opt'
   code <<-EOH
@@ -56,12 +56,12 @@ bash 'deploy_Code' do
 	LOGFILE="/home/ec2-user/logs/rsync_$TIMESTAMP.log"
 	echo $LOGFILE
 	export rbLOGFILE=$LOGFILE
-	sudo rsync -avzh --remove-source-files /opt/concreetadmin-server/ /home/ec2-user/cadmin/ > $LOGFILE
 	mkdir /home/ec2-user/logs
+	kdir /home/ec2-user/logs
+	sudo rsync -avzh --remove-source-files /opt/concreetadmin-server/ /home/ec2-user/cadmin/ > $LOGFILE
 	cd /home/ec2-user/cadmin/
 	sudo rm -fr /opt/concreetadmin-server/
   EOH
-  flags "-x"
 end
 
 
