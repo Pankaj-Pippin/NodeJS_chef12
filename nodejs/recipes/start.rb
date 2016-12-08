@@ -50,7 +50,7 @@ bash 'deploy_Code' do
   user 'root'
   cwd '/opt'
   code <<-EOH
-	TIMESTAMP=`date "+%Y-%m-%d %H:%M:%S"`
+	TIMESTAMP=`date "+%Y-%m-%d%H:%M:%S"`
 	#LOGFILE="/home/ec2-user/logs/rsync_$TIMESTAMP.log"
 	LOGFILE="rsync_$TIMESTAMP.log"
 	echo $LOGFILE
