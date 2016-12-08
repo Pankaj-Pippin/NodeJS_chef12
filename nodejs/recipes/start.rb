@@ -1,6 +1,6 @@
 Chef::Log.warn 'Killing nodejs'
 # Download latest head
-ENV['DIR'] = 'home/ec2-user/logs'
+ENV['DIR'] = '/home/ec2-user/logs'
 bash 'download_git' do
   user 'root'
   cwd '/opt'
@@ -12,8 +12,8 @@ bash 'download_git' do
 	#dir ="/home/ec2-user/logs"
 	echo $DIR
 	if [[ ! -e $DIR ]]; then
-    mkdir $DIR 
-	sudo chmod -R 755 $DIR 
+		mkdir $DIR 
+		sudo chmod -R 755 $DIR 
 	elif [[ ! -d $DIR  ]]; then
 		echo "$dir already exists but is not a directory" 1>&2
 	fi
@@ -52,6 +52,7 @@ bash 'deploy_Code' do
   	#mv /opt/concreetadmin-server/*.* /home/ec2-user/cadmin/
 	TIMESTAMP=`date "+%Y-%m-%d %H:%M:%S"`
 	LOGFILE="/home/ec2-user/logs/rsync_$TIMESTAMP.log"
+	echo $LOGFILE
 	sudo rsync -avzh --remove-source-files /opt/concreetadmin-server/ /home/ec2-user/cadmin/ > $LOGFILE
 	cd /home/ec2-user/cadmin/
 	sudo rm -fr /opt/concreetadmin-server/
