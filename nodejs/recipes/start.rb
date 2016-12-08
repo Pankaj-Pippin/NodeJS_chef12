@@ -51,11 +51,12 @@ bash 'deploy_Code' do
   cwd '/opt'
   code <<-EOH
 	TIMESTAMP=`date "+%Y-%m-%d %H:%M:%S"`
-	LOGFILE="/home/ec2-user/logs/rsync_$TIMESTAMP.log"
+	#LOGFILE="/home/ec2-user/logs/rsync_$TIMESTAMP.log"
+	LOGFILE="rsync_$TIMESTAMP.log"
 	echo $LOGFILE
 	#export rbLOGFILE=$LOGFILE
 	cd /opt
-	sudo rsync -avzh --remove-source-files /opt/concreetadmin-server/ /home/ec2-user/cadmin/ > /home/ec2-user/logs/rsync.log
+	sudo rsync -avzh --remove-source-files /opt/concreetadmin-server/ /home/ec2-user/cadmin/ > /home/ec2-user/logs/$LOGFILE
 	#if [[  -e /opt/concreetadmin-server ]]; then
 		#sudo rm -fr /opt/concreetadmin-server
 	#fi
