@@ -8,7 +8,7 @@ bash 'download_gitz' do
 	if [[  -e /opt/concreetadmin-server ]]; then
 		sudo rm -fr /opt/concreetadmin-server
 	fi
-	sudo git clone  git@github.com:pippintech/concreetadmin-server.git
+	sudo git clone -b sprint4  git@github.com:pippintech/concreetadmin-server.git
 	#dir ="/home/ec2-user/logs"
 	echo $DIR
 	if [[ ! -e $DIR ]]; then
